@@ -1,0 +1,35 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    overflow: hidden; /* Prevents body overflow */
+}
+
+#map {
+    width: 60%; /* Adjust width as needed */
+    height: 100%;
+    position: relative;
+}
+
+#story {
+    width: 40%; /* Adjust width as needed */
+    height: 100%;
+    overflow-y: auto; /* Enables scrolling in the story section */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+#sections {
+    padding-top: 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+}

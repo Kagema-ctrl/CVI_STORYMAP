@@ -1,0 +1,10 @@
+# 🌊 Tracking Sea Level Rise in Mombasa
+
+This interactive web project uses Leaflet.js to visualize the changes in mean sea level in **Mombasa, Kenya** across the years **1980**, **2000**, and **2020**. As users scroll through each section, the map updates dynamically to reflect the corresponding year's data.
+
+## 🗺️ Features
+
+- Story map interface with scroll-linked map updates
+- GeoJSON-based time-series visualization
+- Historical context for each year included in side panel
+- Responsive layout using HTML, CSS, and JavaScript

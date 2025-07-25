@@ -4,19 +4,19 @@ body, html {
     height: 100%;
     font-family: Arial, sans-serif;
     display: flex;
-    overflow: hidden; /* Prevents body overflow */
+    overflow: hidden;
 }
 
 #map {
-    width: 60%; /* Adjust width as needed */
+    width: 60%;
     height: 100%;
     position: relative;
 }
 
 #story {
-    width: 40%; /* Adjust width as needed */
+    width: 40%;
     height: 100%;
-    overflow-y: auto; /* Enables scrolling in the story section */
+    overflow-y: auto;
     padding: 20px;
     box-sizing: border-box;
     background-color: #fff;
@@ -32,4 +32,39 @@ h1 {
 
 .section {
     margin-bottom: 40px;
+}
+
+/* --- Responsive styles for mobile --- */
+@media (max-width: 800px) {
+    body, html {
+        flex-direction: column;
+        overflow: auto;
+        height: auto;
+    }
+    #map, #story {
+        width: 100%;
+        height: 300px;
+        min-height: 200px;
+        max-height: 50vh;
+    }
+    #story {
+        height: auto;
+        max-height: none;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    #map, #story {
+        height: 200px;
+        min-height: 120px;
+        max-height: 40vh;
+        padding: 5px;
+    }
+    .section {
+        margin-bottom: 20px;
+    }
+    h1 {
+        font-size: 1.3em;
+    }
 }

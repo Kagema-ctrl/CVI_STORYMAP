@@ -1,21 +1,61 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mombasa Sea Level Evolution</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kenya Coastal Vulnerability Story Map</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div id="map"></div>
-    <div id="story">
-        <h1>Evolution of Mean Sea Level in Mombasa County, Kenya</h1>
-        <div id="sections">
-            <!-- Content sections go here -->
-        </div>
+  <!-- Map -->
+  <div id="map"></div>
+
+  <!-- Story -->
+  <div id="story">
+    <h1>Coastal Vulnerability to Sea Level Rise in Kenya</h1>
+    <div id="sections">
+      <!-- Example sections (expand with more as needed) -->
+      <div class="section" data-index="CVI">
+        <h2>Overall Coastal Vulnerability Index (CVI)</h2>
+        <p>This map shows the composite CVI classified into 5 equal intervals.</p>
+      </div>
+
+      <div class="section" data-index="PVI">
+        <h2>Physical Vulnerability Index (PVI)</h2>
+        <p>Composite of physical indicators (slope, shoreline change, sea-level rise…)</p>
+      </div>
+
+      <div class="section" data-index="SoVI">
+        <h2>Social Vulnerability Index (SoVI)</h2>
+        <p>Composite of socioeconomic indicators (LULC, population density, road proximity…)</p>
+      </div>
+
+      <div class="section" data-group="physical" data-key="SLR">
+        <h2>Sea-Level Rise</h2>
+        <p>Segments with higher SLR rates rank more vulnerable.</p>
+      </div>
+
+      <div class="section" data-group="socio" data-key="LULC">
+        <h2>Land Use / Land Cover</h2>
+        <p>Built-up land cover closer to the shoreline shows higher exposure.</p>
+      </div>
+
+      <div class="section" data-index="CVI" data-county="Mombasa">
+        <h2>Spotlight: Mombasa</h2>
+        <p>Zoom to Mombasa county while showing CVI.</p>
+      </div>
     </div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Our JS -->
+  <script src="script.js"></script>
 </body>
 </html>

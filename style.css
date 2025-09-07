@@ -1,70 +1,228 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    display: flex;
-    overflow: hidden;
+/* ================================
+   Base layout
+================================ */
+:root{
+  --bg: #ffffff;
+  --text: #1b1b1b;
+  --muted: #5a5a5a;
+  --panel-shadow: 0 6px 18px rgba(0,0,0,.08);
+  --border: #e7e7e7;
 }
 
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: var(--bg);
+}
+
+/* Split layout: map (left) + story (right) */
+body {
+  display: flex;
+  overflow: hidden; /* keep the page from scrolling; story panel will scroll */
+}
+
+/* ================================
+   Map
+================================ */
 #map {
-    width: 60%;
-    height: 100%;
-    position: relative;
+  width: 60%;
+  height: 100%;
+  position: relative;
 }
 
+/* Optional map overlay slot (e.g., title or controls) */
+.map-overlay {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: var(--panel-shadow);
+  z-index: 400;
+}
+
+/* ================================
+   Story panel
+================================ */
 #story {
-    width: 40%;
-    height: 100%;
-    overflow-y: auto;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #fff;
+  width: 40%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 24px;
+  border-left: 1px solid var(--border);
+  background: #fff;
 }
 
 h1 {
-    margin-top: 0;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+  font-size: 1.6rem;
 }
 
 #sections {
-    padding-top: 20px;
+  padding-top: 6px;
 }
 
 .section {
-    margin-bottom: 40px;
+  margin: 20px 0 28px 0;
+  padding: 14px 14px 16px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--panel-shadow);
+  transition: transform .15s ease, box-shadow .15s ease;
+  cursor: default;
 }
 
-/* --- Responsive styles for mobile --- */
+.section:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+.section h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.section p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Small helper labels (if you add any) */
+.badge {
+  display: inline-block;
+  font-size: .72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  color: #444;
+}
+
+/* ================================
+   Leaflet helpers
+================================ */
+.leaflet-container {
+  font: 12px/1.2 Arial, sans-serif;
+}
+
+.info.legend {
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--panel-shadow);
+  min-width: 180px;
+}
+
+.info.legend b {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.info.legend i {
+  width: 14px;
+  height: 14px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.9;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.info.legend div {
+  margin: 4px 0;
+  white-space: nowrap;
+}
+
+/* Leaflet popup tweaks */
+.leaflet-popup-content {
+  margin: 10px 12px;
+  line-height: 1.35;
+}
+.leaflet-popup-content strong { color: #222; }
+
+/* ================================
+   Scrollbar (WebKit/Chromium)
+================================ */
+#story::-webkit-scrollbar {
+  width: 10px;
+}
+#story::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+#story::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border-radius: 999px;
+}
+#story::-webkit-scrollbar-thumb:hover {
+  background: #b9b9b9;
+}
+
+/* ================================
+   Tablet breakpoint
+================================ */
 @media (max-width: 800px) {
-    body, html {
-        flex-direction: column;
-        overflow: auto;
-        height: auto;
-    }
-    #map, #story {
-        width: 100%;
-        height: 300px;
-        min-height: 200px;
-        max-height: 50vh;
-    }
-    #story {
-        height: auto;
-        max-height: none;
-        padding: 10px;
-    }
+  body {
+    flex-direction: column;
+    overflow: auto; /* allow page to scroll on small screens */
+  }
+  #map, #story {
+    width: 100%;
+  }
+  #map {
+    height: 320px;
+    max-height: 50vh;
+    border-bottom: 1px solid var(--border);
+  }
+  #story {
+    height: auto;
+    padding: 18px;
+  }
 }
 
+/* ================================
+   Smartphone breakpoint
+================================ */
 @media (max-width: 500px) {
-    #map, #story {
-        height: 200px;
-        min-height: 120px;
-        max-height: 40vh;
-        padding: 5px;
-    }
-    .section {
-        margin-bottom: 20px;
-    }
-    h1 {
-        font-size: 1.3em;
-    }
+  #map {
+    height: 220px;       /* smaller map height */
+    max-height: 42vh;
+  }
+  #story {
+    padding: 12px;
+  }
+  h1 {
+    font-size: 1.22rem;
+    margin-bottom: 8px;
+  }
+  .section {
+    margin: 14px 0 18px 0;
+    padding: 12px;
+    border-radius: 10px;
+  }
+  .section h2 {
+    font-size: 1.02rem;
+  }
+  .section p {
+    font-size: 0.95rem;
+  }
+}
+
+/* ================================
+   Ultra-small devices / embedded iframes
+================================ */
+@media (max-width: 360px) {
+  #map { height: 180px; }
+  .section h2 { font-size: .98rem; }
+  .section p { font-size: .92rem; }
 }
